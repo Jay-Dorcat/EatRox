@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://uyopmjohaenm"]
+
+[ext_resource type="Script" uid="uid://6wdrruiwx3m5" path="res://Objects/Portal/Portal.gd" id="1_bvcgx"]
+[ext_resource type="Texture2D" uid="uid://bbq56q25el10w" path="res://Objects/Portal/Portal.png" id="2_kjfuy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goeoo"]
+atlas = ExtResource("2_kjfuy")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc0vw"]
+atlas = ExtResource("2_kjfuy")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_444u7"]
+atlas = ExtResource("2_kjfuy")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtw83"]
+atlas = ExtResource("2_kjfuy")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac65c"]
+atlas = ExtResource("2_kjfuy")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klfli"]
+atlas = ExtResource("2_kjfuy")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goeoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc0vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_444u7")
+}],
+"loop": 1,
+"name": &"Circle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtw83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac65c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klfli")
+}],
+"loop": 1,
+"name": &"Square",
+"speed": 7.0
+}]
+
+[node name="Portal" type="Area2D" unique_id=784529556]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("1_bvcgx")
+
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=227046396]
+shape = SubResource("CircleShape2D_g4v7s")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1085968967]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"Square"
+frame_progress = 0.79538465

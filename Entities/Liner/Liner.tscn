@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dxnfj58cw0fty"]
+
+[ext_resource type="Texture2D" uid="uid://d1k1av4j2qr3p" path="res://Entities/Liner/Liner.png" id="1_vw27x"]
+
+[sub_resource type="GDScript" id="GDScript_g4v7s"]
+resource_name = "Liner"
+script/source = "extends GridMover
+
+@export_enum(\"Left:1\",\"Right:2\",\"Up:3\",\"Down:4\") var Direction : int = LEFT
+
+var CanFlip : bool = true
+
+func _ready() -> void:
+	$Sprite.rotation = DIR2VEC[Direction].angle()
+	super()
+
+func _process(_delta: float) -> void:
+	if CanFlip && LastDirection == NONE:
+		CanFlip = false
+		$Sprite.play(&\"default\")
+		$Sprite.animation_finished.connect(flip, CONNECT_ONE_SHOT)
+	if !CanFlip && !$Sprite.is_playing():
+		CanFlip = true
+
+func flip():
+	$Sprite.play_backwards(&\"default\")
+	Direction = invert_direction(Direction)
+	$Sprite.rotation = DIR2VEC[Direction].angle()
+
+func get_direction_priority() -> PackedByteArray:
+	if $Sprite.is_playing():
+		return [NONE]
+	return [Direction]
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw27x"]
+atlas = ExtResource("1_vw27x")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccqex"]
+atlas = ExtResource("1_vw27x")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk0sg"]
+atlas = ExtResource("1_vw27x")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckefa"]
+atlas = ExtResource("1_vw27x")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vw27x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccqex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk0sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckefa")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vw27x"]
+radius = 3.0
+
+[node name="Liner" type="RayCast2D" unique_id=2091674687]
+script = SubResource("GDScript_g4v7s")
+MovementSpeed = 48.0
+metadata/_custom_type_script = "uid://dqeiueyxwfvh8"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=579293933]
+modulate = Color(1, 0.71047974, 0.30078125, 1)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+
+[node name="Danger" type="Area2D" parent="." unique_id=373962001]
+collision_layer = 12
+collision_mask = 0
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="Danger" unique_id=2045727893]
+shape = SubResource("CircleShape2D_vw27x")
+debug_color = Color(0.70196074, 0, 0, 0.41960785)

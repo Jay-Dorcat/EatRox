@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bm6rasjebyf0i"]
+
+[ext_resource type="Texture2D" uid="uid://dnuat6mb0i6lv" path="res://Dot.png" id="1_3v1ek"]
+
+[sub_resource type="GDScript" id="GDScript_g4v7s"]
+resource_name = "Dot"
+script/source = "extends Area2D
+
+const FREQ : float = 1.0
+const POWR : float = 1.0
+
+var Wave : float = 0.0
+
+func _ready() -> void:
+	Wave = position.x * 0.1
+
+func _process(delta: float) -> void:
+	Wave = fmod(Wave + delta * FREQ, 1.0)
+	$Sprite.position.y = sin(Wave * TAU) * POWR
+
+func collected() -> void:
+	queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nigj7"]
+atlas = ExtResource("1_3v1ek")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hppoe"]
+atlas = ExtResource("1_3v1ek")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fesl7"]
+atlas = ExtResource("1_3v1ek")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nryv"]
+atlas = ExtResource("1_3v1ek")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iuak"]
+atlas = ExtResource("1_3v1ek")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nigj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hppoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fesl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nryv")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_0iuak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nryv")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 2.0
+
+[node name="Dot" type="Area2D" unique_id=1202064352]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = SubResource("GDScript_g4v7s")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=670051666]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=881639980]
+shape = SubResource("CircleShape2D_g4v7s")
+debug_color = Color(0.70196074, 0.44420955, 0, 0.41960785)
+
+[connection signal="area_entered" from="." to="." method="collected" unbinds=1]

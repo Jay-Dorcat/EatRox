@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ckrliwidpv3do"]
+
+[ext_resource type="Texture2D" uid="uid://daw7h30amm0qi" path="res://Entities/Dink/Dink.png" id="1_aqq2h"]
+
+[sub_resource type="GDScript" id="GDScript_g4v7s"]
+resource_name = "Dink"
+script/source = "extends GridMover
+
+@export var Detection : int = 8
+var Thumping : bool = false
+var Delay : float = 0.0
+
+func _process(delta: float) -> void:
+	if Thumping:
+		MovementSpeed += delta * 64.0
+	elif LastDirection:
+		Thumping = true
+		MovementSpeed = 64.0
+	if Delay > 0.0:
+		Delay -= delta
+	else:
+		$Sprite.frame = LastDirection
+
+func get_direction_priority() -> PackedByteArray:
+	if LastDirection == NONE && Thumping:
+		Thumping = false
+		Delay = 1.0
+		$Sprite.frame = 5
+	if Thumping:
+		return [LastDirection]
+	if Delay > 0.0:
+		return [NONE]
+	
+	var PlayerLocal : Vector2 = to_local(PlayerNode.Instance.global_position)
+	if abs(PlayerLocal.x) < Detection:
+		return [UP] if PlayerLocal.y < 0 else [DOWN]
+	if abs(PlayerLocal.y) < Detection:
+		return [LEFT] if PlayerLocal.x < 0 else [RIGHT]
+	return [NONE]
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqq2h"]
+radius = 3.0
+
+[node name="Dink" type="RayCast2D" unique_id=1284927951]
+script = SubResource("GDScript_g4v7s")
+metadata/_custom_type_script = "uid://dqeiueyxwfvh8"
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=9548774]
+texture = ExtResource("1_aqq2h")
+hframes = 6
+
+[node name="Danger" type="Area2D" parent="." unique_id=194883774]
+collision_layer = 12
+collision_mask = 0
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="Danger" unique_id=1066226750]
+shape = SubResource("CircleShape2D_aqq2h")
+debug_color = Color(0.70196074, 0, 0, 0.41960785)

@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bhaa413p4myn"]
+
+[ext_resource type="Script" uid="uid://cudhwhvw47hus" path="res://Entities/Ghost/Ghost.gd" id="1_okd7r"]
+[ext_resource type="Texture2D" uid="uid://cjf5luibthgd7" path="res://Entities/Ghost/Ghost.png" id="2_gfvn3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtwyn"]
+atlas = ExtResource("2_gfvn3")
+region = Rect2(0, 6, 8, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wexbt"]
+atlas = ExtResource("2_gfvn3")
+region = Rect2(0, 8, 8, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsbvd"]
+atlas = ExtResource("2_gfvn3")
+region = Rect2(8, 6, 8, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o30fp"]
+atlas = ExtResource("2_gfvn3")
+region = Rect2(8, 8, 8, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3oexd"]
+atlas = ExtResource("2_gfvn3")
+region = Rect2(16, 6, 8, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2rie"]
+atlas = ExtResource("2_gfvn3")
+region = Rect2(16, 8, 8, 2)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtwyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wexbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsbvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o30fp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3oexd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2rie")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_okd7r"]
+radius = 3.0
+
+[node name="Ghost" type="RayCast2D" unique_id=31341871]
+modulate = Color(0.6875, 0.98535156, 1, 1)
+script = ExtResource("1_okd7r")
+MovementSpeed = 26.0
+metadata/_custom_type_script = "uid://dqeiueyxwfvh8"
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=389124644]
+position = Vector2(0, -1)
+texture = ExtResource("2_gfvn3")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 6)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1816109107]
+position = Vector2(0, 3)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+frame_progress = 0.86993057
+
+[node name="Danger" type="Area2D" parent="." unique_id=602798214]
+collision_layer = 12
+collision_mask = 0
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="Danger" unique_id=337011521]
+shape = SubResource("CircleShape2D_okd7r")
+debug_color = Color(0.70196074, 0, 0, 0.41960785)

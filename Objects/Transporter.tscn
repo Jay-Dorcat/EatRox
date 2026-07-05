@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://lrcuu34a6dc8"]
+
+[ext_resource type="Script" uid="uid://cxicatog77pmv" path="res://Transporter.gd" id="1_aw061"]
+
+[sub_resource type="Curve" id="Curve_hvnfr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.099454, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yf5fn"]
+curve = SubResource("Curve_hvnfr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g4v7s"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -5.000002
+tangential_accel_max = 4.9999976
+damping_min = 3.0000002
+damping_max = 3.0000002
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_yf5fn")
+
+[node name="Transporter" type="GPUParticles2D" unique_id=1188684945]
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_g4v7s")
+script = ExtResource("1_aw061")
