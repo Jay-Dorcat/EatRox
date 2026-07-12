@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://nhale38l2bar"]
+
+[ext_resource type="Texture2D" uid="uid://lysj8k7s3ajv" path="res://UI/WindowBevels.png" id="1_heus3"]
+[ext_resource type="StyleBox" uid="uid://8hph1nxmdo5l" path="res://UI/DippedPanel.tres" id="2_gjxvf"]
+
+[sub_resource type="Gradient" id="Gradient_gjxvf"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(0, 0.203125, 1, 1, 0.6171875, 0.8833618, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_gjxvf")
+fill = 1
+fill_from = Vector2(0, 0.2)
+fill_to = Vector2(1, 0.90000004)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4v7s"]
+atlas = ExtResource("1_heus3")
+region = Rect2(17, 9, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fphuv"]
+atlas = ExtResource("1_heus3")
+region = Rect2(25, 2, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqtep"]
+atlas = ExtResource("1_heus3")
+region = Rect2(25, 9, 5, 5)
+
+[node name="Control" type="Control" unique_id=1583975386]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="Panel" parent="." unique_id=1007423089]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=1719753861]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer" unique_id=966278156]
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_g4v7s")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/TextureRect" unique_id=1223689392]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+alignment = 2
+
+[node name="Button" type="Button" parent="NinePatchRect/VBoxContainer/TextureRect/HBoxContainer" unique_id=1109369624]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+icon = SubResource("AtlasTexture_g4v7s")
+
+[node name="Button2" type="Button" parent="NinePatchRect/VBoxContainer/TextureRect/HBoxContainer" unique_id=1713886710]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+icon = SubResource("AtlasTexture_fphuv")
+
+[node name="Button3" type="Button" parent="NinePatchRect/VBoxContainer/TextureRect/HBoxContainer" unique_id=727696288]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+icon = SubResource("AtlasTexture_mqtep")
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/TextureRect" unique_id=382993650]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "  C://... .../Level"
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="NinePatchRect/VBoxContainer" unique_id=2112450385]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_gjxvf")
+
+[node name="ProgressBar" type="ProgressBar" parent="NinePatchRect/VBoxContainer/Panel" unique_id=1626511921]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 14.0
+grow_horizontal = 2
+value = 50.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer" unique_id=1287794384]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 2
+
+[node name="Button" type="Button" parent="NinePatchRect/VBoxContainer/HBoxContainer" unique_id=528040919]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.25882354, 0.25882354, 0.25882354, 1)
+text = "Open"
+
+[node name="Button2" type="Button" parent="NinePatchRect/VBoxContainer/HBoxContainer" unique_id=1911992366]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.25882354, 0.25882354, 0.25882354, 1)
+text = "Close"

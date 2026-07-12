@@ -1,7 +1,26 @@
 [gd_scene format=3 uid="uid://bhaa413p4myn"]
 
-[ext_resource type="Script" uid="uid://cudhwhvw47hus" path="res://Entities/Ghost/Ghost.gd" id="1_okd7r"]
-[ext_resource type="Texture2D" uid="uid://cjf5luibthgd7" path="res://Entities/Ghost/Ghost.png" id="2_gfvn3"]
+[ext_resource type="Texture2D" uid="uid://cjf5luibthgd7" path="res://Entities/Ghosts/Ghost.png" id="2_gfvn3"]
+
+[sub_resource type="GDScript" id="GDScript_okd7r"]
+resource_name = "RedGhost"
+script/source = "extends GridMover
+
+func _process(_delta: float) -> void:
+	if LastDirection:
+		$Sprite.frame = [1,0,2,3][LastDirection-1]
+
+func get_direction_priority() -> PackedByteArray:
+	var LocalPlayer : Vector2 = to_local(PlayerNode.Instance.global_position)
+	
+	var Directions : Array = [LEFT,RIGHT,UP,DOWN]
+	Directions.erase(invert_direction(LastDirection))
+	Directions.sort_custom(func(a : int, b : int):
+		return (DIR2VEC[a] - LocalPlayer).length_squared() < (DIR2VEC[b] - LocalPlayer).length_squared()
+	)
+	Directions.append(invert_direction(LastDirection))
+	return Directions
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vtwyn"]
 atlas = ExtResource("2_gfvn3")
@@ -56,10 +75,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_okd7r"]
 radius = 3.0
 
-[node name="Ghost" type="RayCast2D" unique_id=31341871]
-modulate = Color(0.6875, 0.98535156, 1, 1)
-script = ExtResource("1_okd7r")
-MovementSpeed = 26.0
+[node name="RedGhost" type="RayCast2D" unique_id=31341871]
+modulate = Color(1, 0.6862745, 0.6862745, 1)
+script = SubResource("GDScript_okd7r")
+MovementSpeed = 22.0
 metadata/_custom_type_script = "uid://dqeiueyxwfvh8"
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=389124644]

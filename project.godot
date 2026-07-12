@@ -13,7 +13,6 @@ config_version=5
 config/name="EatRox"
 run/main_scene="uid://dyhpcgx1a3ijb"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [display]
 
@@ -22,6 +21,10 @@ window/size/viewport_height=180
 window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="viewport"
+
+[gui]
+
+theme/custom="uid://b8k5eoiux72gp"
 
 [input]
 
@@ -64,4 +67,4 @@ rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.06349182, 0.06893909, 0.07421875, 1)
-2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

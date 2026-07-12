@@ -4,6 +4,7 @@ class_name Portal2D
 
 const COLOURS : PackedColorArray = [Color.HOT_PINK, Color.LIGHT_CYAN, Color.LIGHT_GREEN, Color.CORAL]
 
+@export var TransportTime : float = 1.0
 @export_enum("Pink","Cyan","Lime","Fire") var Colour : int = 0:
 	set(new): Colour = new; update_visuals()
 @export_enum("Square","Circle") var Shape : int = 0:
@@ -48,6 +49,6 @@ func on_area_entered(area : Area2D):
 		if area.owner in Exceptions:
 			Exceptions.erase(area.owner)
 			return
-		Transporter.create_transporter(area.owner, ConnectTo.global_position).modulate = COLOURS[Colour]
+		Transporter.create_transporter(area.owner, ConnectTo.global_position, TransportTime).modulate = COLOURS[Colour]
 		if ConnectTo.CanSend:
 			ConnectTo.Exceptions.append(area.owner)

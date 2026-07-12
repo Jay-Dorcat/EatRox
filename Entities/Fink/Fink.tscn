@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://opctey0w1kib"]
+
+[ext_resource type="Texture2D" uid="uid://c85shvlmjbcu3" path="res://Entities/Fink/Fink.png" id="2_avbnh"]
+[ext_resource type="Script" uid="uid://bgn5sfps4sbx2" path="res://Components/SineWave.gd" id="3_j423n"]
+[ext_resource type="Script" uid="uid://cvl5y0hwd8n4o" path="res://Components/PlayerLoS.gd" id="3_ol0bn"]
+
+[sub_resource type="GDScript" id="GDScript_ol0bn"]
+resource_name = "Fink"
+script/source = "extends GridMover
+
+@export_enum(\"Left:1\",\"Right:2\",\"Up:3\",\"Down:4\") var Direction : int = LEFT
+
+func _ready() -> void:
+	super()
+
+func _process(_delta: float) -> void:
+	if LastDirection == NONE:
+		Direction = tangent_direction(Direction)
+		if randf() < 0.5:
+			Direction = invert_direction(Direction)
+	
+	if $PlayerSightline.is_player_sighted():
+		var PlayerLocal : Vector2 = to_local(PlayerNode.Instance.global_position)
+		if abs(PlayerLocal.x) < 7.0:
+			Direction = UP if PlayerLocal.y < 0 else DOWN
+		elif abs(PlayerLocal.y) < 7.0:
+			Direction = LEFT if PlayerLocal.x < 0 else RIGHT
+
+func get_direction_priority() -> PackedByteArray:
+	return [Direction]
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1jnx"]
+atlas = ExtResource("2_avbnh")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y47lm"]
+atlas = ExtResource("2_avbnh")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0lbs"]
+atlas = ExtResource("2_avbnh")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlljk"]
+atlas = ExtResource("2_avbnh")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1jnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y47lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0lbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlljk")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8rg8p"]
+radius = 3.0
+
+[node name="Fink" type="RayCast2D" unique_id=1177035061]
+script = SubResource("GDScript_ol0bn")
+metadata/_custom_type_script = "uid://dqeiueyxwfvh8"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1830820263]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+frame_progress = 0.77958775
+script = ExtResource("3_j423n")
+
+[node name="Danger" type="Area2D" parent="." unique_id=2108601684]
+collision_layer = 12
+collision_mask = 0
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="Danger" unique_id=1328401723]
+shape = SubResource("CircleShape2D_8rg8p")
+debug_color = Color(0.70196074, 0, 0, 0.41960785)
+
+[node name="PlayerSightline" type="RayCast2D" parent="." unique_id=349792671]
+enabled = false
+exclude_parent = false
+script = ExtResource("3_ol0bn")

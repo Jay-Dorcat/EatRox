@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnuat6mb0i6lv"
-path="res://.godot/imported/Dot.png-dcef53c12dc96c367a9f7396ba42d7d6.ctex"
+uid="uid://dyep5s348mar3"
+path="res://.godot/imported/Sparkle.png-20fe41ae6f470150613f69559b73e2ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Dot.png"
-dest_files=["res://.godot/imported/Dot.png-dcef53c12dc96c367a9f7396ba42d7d6.ctex"]
+source_file="res://Sparkle.png"
+dest_files=["res://.godot/imported/Sparkle.png-20fe41ae6f470150613f69559b73e2ea.ctex"]
 
 [params]
 

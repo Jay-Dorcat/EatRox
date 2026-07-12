@@ -64,5 +64,13 @@ func invert_direction(dir : int):
 		LEFT: return RIGHT
 	return NONE
 
+func tangent_direction(dir : int):
+	match dir:
+		UP: return LEFT
+		LEFT: return DOWN
+		DOWN: return RIGHT
+		RIGHT: return UP
+	return NONE
+
 func teleport_finished():
 	NextPosition = position.snappedf(GRID_SIZE)

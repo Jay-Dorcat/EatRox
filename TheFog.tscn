@@ -1,0 +1,263 @@
+[gd_scene format=4 uid="uid://bok8fidc04bbc"]
+
+[ext_resource type="Texture2D" uid="uid://be7bnnyapnfhv" path="res://TileSheet.png" id="1_eload"]
+[ext_resource type="Shader" uid="uid://dlxv744ybi5t5" path="res://Reveal.gdshader" id="2_y2g5h"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2g5h"]
+texture = ExtResource("1_eload")
+texture_region_size = Vector2i(8, 8)
+0:5/size_in_atlas = Vector2i(2, 2)
+0:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_g4v7s"]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_y2g5h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_57qmd"]
+shader = ExtResource("2_y2g5h")
+shader_parameter/Radial = -1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yf5fn"]
+noise_type = 2
+frequency = 0.0815
+fractal_octaves = 1
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g4v7s"]
+noise = SubResource("FastNoiseLite_yf5fn")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g4v7s"]
+blend_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_eload"]
+offsets = PackedFloat32Array(0, 0.93235296, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.36, 1, 1, 1, 0.503)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eload"]
+gradient = SubResource("Gradient_eload")
+width = 25
+height = 25
+fill = 2
+fill_from = Vector2(0.6, 0.6)
+fill_to = Vector2(1, 0.6)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_v68p1"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.33333334, 0.6666667)
+colors = PackedColorArray(0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 9
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yf5fn"]
+gradient = SubResource("Gradient_v68p1")
+
+[sub_resource type="Gradient" id="Gradient_wsyaj"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g4v7s"]
+gradient = SubResource("Gradient_wsyaj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g4v7s"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 100, 100)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_g4v7s")
+color_initial_ramp = SubResource("GradientTexture1D_yf5fn")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eload"]
+blend_mode = 2
+
+[sub_resource type="Animation" id="Animation_y2g5h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/Grow:material:shader_parameter/Radial")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/CloseParallax/SmallPixels:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/DistantParallax/LargePixels:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/DistantParallax/LargePixels:interp_to_end")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasGroup/CloseParallax/SmallPixels:interp_to_end")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_v68p1"]
+resource_name = "Warp"
+length = 3.0000000000000004
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/Grow:material:shader_parameter/Radial")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/CloseParallax/SmallPixels:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/DistantParallax/LargePixels:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/DistantParallax/LargePixels:interp_to_end")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.95, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasGroup/CloseParallax/SmallPixels:interp_to_end")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.95, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wsyaj"]
+_data = {
+&"RESET": SubResource("Animation_y2g5h"),
+&"Warp": SubResource("Animation_v68p1")
+}
+
+[node name="TheFog" type="Node2D" unique_id=301818442]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1490993777]
+self_modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
+
+[node name="TileMap" type="TileMapLayer" parent="CanvasGroup" unique_id=1848113840]
+position = Vector2(-4, -4)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAUAAAABAAAAAAAAAAUAAAACAAAAAAAAAAUAAAADAAAAAAAAAAUAAAAEAAAAAAAAAAUAAAAFAAAAAAAAAAUAAAAGAAAAAAAAAAUAAAAGAP//AAAAAAUAAAAGAP7/AAAAAAUAAAAFAP7/AAAAAAUAAAAEAP7/AAAAAAUAAAADAP7/AAAAAAUAAAACAP7/AAAAAAUAAAABAP7/AAAAAAUAAAAAAP7/AAAAAAUAAAD///7/AAAAAAUAAAD+//7/AAAAAAUAAAD9//7/AAAAAAUAAAD9////AAAAAAUAAAD9/wAAAAAAAAUAAAD9/wEAAAAAAAUAAAD9/wIAAAAAAAUAAAD+/wIAAAAAAAUAAAD//wIAAAAAAAUAAAAAAAIAAAAAAAUAAAABAAIAAAAAAAUAAAACAAIAAAAAAAUAAAADAAIAAAAAAAUAAAAEAAIAAAAAAAUAAAAFAAIAAAAAAAUAAAAGAAIAAAAAAAUAAAAGAAEAAAAAAAUAAAA=")
+tile_set = SubResource("TileSet_g4v7s")
+
+[node name="Grow" type="Sprite2D" parent="CanvasGroup" unique_id=2118047700]
+visible = false
+material = SubResource("ShaderMaterial_57qmd")
+texture = SubResource("NoiseTexture2D_g4v7s")
+
+[node name="DistantParallax" type="Parallax2D" parent="CanvasGroup" unique_id=93929665]
+texture_filter = 2
+scroll_scale = Vector2(0.25, 0.25)
+repeat_size = Vector2(200, 200)
+repeat_times = 5
+
+[node name="LargePixels" type="GPUParticles2D" parent="CanvasGroup/DistantParallax" unique_id=1333510895]
+self_modulate = Color(1, 1, 1, 0.565)
+material = SubResource("CanvasItemMaterial_g4v7s")
+amount = 200
+texture = SubResource("GradientTexture2D_eload")
+lifetime = 8.0
+preprocess = 10.0
+explosiveness = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_g4v7s")
+
+[node name="CloseParallax" type="Parallax2D" parent="CanvasGroup" unique_id=640922648]
+texture_filter = 2
+scroll_scale = Vector2(0.5, 0.25)
+repeat_size = Vector2(100, 100)
+repeat_times = 10
+
+[node name="SmallPixels" type="GPUParticles2D" parent="CanvasGroup/CloseParallax" unique_id=25236365]
+self_modulate = Color(1, 1, 1, 0.565)
+material = SubResource("CanvasItemMaterial_eload")
+scale = Vector2(0.5, 0.5)
+amount = 300
+texture = SubResource("GradientTexture2D_eload")
+lifetime = 5.0
+preprocess = 10.0
+explosiveness = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_g4v7s")
+
+[node name="Warp" type="AnimationPlayer" parent="." unique_id=1291779228]
+libraries/ = SubResource("AnimationLibrary_wsyaj")

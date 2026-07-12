@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjf5luibthgd7"
-path="res://.godot/imported/Ghost.png-7d1c419d3459ff86468471affaf8578a.ctex"
+uid="uid://c85shvlmjbcu3"
+path="res://.godot/imported/Fink.png-55e767659a5245378245c10e3c5ba99b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Ghost/Ghost.png"
-dest_files=["res://.godot/imported/Ghost.png-7d1c419d3459ff86468471affaf8578a.ctex"]
+source_file="res://Entities/Fink/Fink.png"
+dest_files=["res://.godot/imported/Fink.png-55e767659a5245378245c10e3c5ba99b.ctex"]
 
 [params]
 

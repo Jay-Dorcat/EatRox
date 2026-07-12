@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://2elpdrf8d4m6"]
+
+[ext_resource type="Texture2D" uid="uid://lysj8k7s3ajv" path="res://UI/WindowBevels.png" id="1_tt1od"]
+
+[resource]
+texture = ExtResource("1_tt1od")
+texture_margin_left = 1.0
+texture_margin_top = 3.0
+texture_margin_right = 1.0
+texture_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+region_rect = Rect2(16, 0, 9, 8)

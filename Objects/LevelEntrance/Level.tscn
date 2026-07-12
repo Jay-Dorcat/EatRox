@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c78kq7ulrqohk"]
+
+[ext_resource type="Texture2D" uid="uid://bkw8mueageopx" path="res://Objects/LevelEntrance/FileIcons.png" id="1_5n6w3"]
+[ext_resource type="Script" uid="uid://caks1ul4vtp0e" path="res://Objects/LevelEntrance/Level.gd" id="1_s7vri"]
+[ext_resource type="Texture2D" uid="uid://dyep5s348mar3" path="res://Sparkle.png" id="2_i717y"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yf5fn"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g4v7s"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 2, 4)
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="Level" type="Node2D" unique_id=560511047]
+script = ExtResource("1_s7vri")
+Type = 5
+
+[node name="Type" type="Sprite2D" parent="." unique_id=1185643469]
+texture = ExtResource("1_5n6w3")
+hframes = 16
+vframes = 2
+frame = 5
+
+[node name="State" type="Sprite2D" parent="." unique_id=1365174391]
+position = Vector2(4, 4)
+texture = ExtResource("1_5n6w3")
+hframes = 16
+vframes = 2
+frame = 16
+
+[node name="Sparkles" type="GPUParticles2D" parent="." unique_id=316265440]
+visible = false
+material = SubResource("CanvasItemMaterial_yf5fn")
+position = Vector2(0, -1)
+amount = 1
+texture = ExtResource("2_i717y")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_g4v7s")

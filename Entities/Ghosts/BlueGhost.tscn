@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cg5p0ahd4ykjf"]
+
+[ext_resource type="PackedScene" uid="uid://bhaa413p4myn" path="res://Entities/Ghosts/RedGhost.tscn" id="1_voiui"]
+
+[sub_resource type="GDScript" id="GDScript_6hyrs"]
+resource_name = "BlueGhost"
+script/source = "extends GridMover
+
+func _process(_delta: float) -> void:
+	if LastDirection:
+		$Sprite.frame = [1,0,2,3][LastDirection-1]
+
+func get_direction_priority() -> PackedByteArray:
+	var Directions : Array = [LEFT,RIGHT,UP,DOWN]
+	Directions.erase(invert_direction(LastDirection))
+	Directions.shuffle()
+	Directions.append(invert_direction(LastDirection))
+	return Directions
+"
+
+[node name="BlueGhost" unique_id=31341871 instance=ExtResource("1_voiui")]
+modulate = Color(0.6862745, 0.9044118, 1, 1)
+script = SubResource("GDScript_6hyrs")
+MovementSpeed = 26.0

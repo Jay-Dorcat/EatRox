@@ -7,6 +7,7 @@ var TransportObj : GridMover
 var From : Vector2
 var To : Vector2
 var Progress : float
+var ProgressSpeed : float = 1.0
 var MaxX : bool = false
 
 signal transport_finished()
@@ -23,7 +24,7 @@ func transport(obj : GridMover, to : Vector2):
 
 func _process(delta: float) -> void:
 	if TransportObj:
-		Progress += delta
+		Progress += delta * ProgressSpeed
 		global_position = Vector2(
 			lerpf(From.x, To.x, ease(ease(Progress, EASE if !MaxX else 1.0),EASE)),
 			lerpf(From.y, To.y, ease(ease(Progress, 1.0 if !MaxX else EASE),EASE))
@@ -40,9 +41,10 @@ func _process(delta: float) -> void:
 			await get_tree().create_timer(1.0).timeout
 			queue_free()
 
-static func create_transporter(obj : GridMover, to : Vector2) -> Transporter:
-	var Trpt : Transporter = load("res://Objects/Transporter.tscn").instantiate()
+static func create_transporter(obj : GridMover, to : Vector2, overTime : float = 1.0) -> Transporter:
+	var Trpt : Transporter = load("res://Objects/Transporter/Transporter.tscn").instantiate()
 	obj.add_sibling(Trpt)
 	Trpt.transport_finished.connect(obj.teleport_finished)
+	Trpt.ProgressSpeed = 1.0 / overTime
 	Trpt.transport(obj, to)
 	return Trpt
