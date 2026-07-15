@@ -16,6 +16,10 @@ func _ready() -> void:
 	MovementSpeed = BaseSpeed
 	super()
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_UNPAUSED:
+		refresh_inputs()
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"Left"):
 		InputOrder.append(LEFT)
@@ -58,7 +62,7 @@ func get_direction_priority() -> PackedByteArray:
 	Dirs.reverse()
 	return Dirs
 
-func teleport_finished():
+func refresh_inputs():
 	InputOrder.clear()
 	if Input.is_action_pressed(&"Left"):
 		InputOrder.append(LEFT)
@@ -68,4 +72,3 @@ func teleport_finished():
 		InputOrder.append(UP)
 	if Input.is_action_pressed(&"Down"):
 		InputOrder.append(DOWN)
-	super()

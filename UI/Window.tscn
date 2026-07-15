@@ -1,16 +1,20 @@
 [gd_scene format=3 uid="uid://nhale38l2bar"]
 
-[ext_resource type="Texture2D" uid="uid://lysj8k7s3ajv" path="res://UI/WindowBevels.png" id="1_heus3"]
-[ext_resource type="StyleBox" uid="uid://8hph1nxmdo5l" path="res://UI/DippedPanel.tres" id="2_gjxvf"]
+[ext_resource type="Script" uid="uid://dhqh1oy7b3e2d" path="res://UI/LevelWindow.gd" id="1_fphuv"]
+[ext_resource type="Texture2D" uid="uid://lysj8k7s3ajv" path="res://UI/Textures/WindowBevels.png" id="1_heus3"]
+[ext_resource type="StyleBox" uid="uid://8hph1nxmdo5l" path="res://UI/Styleboxes/DippedPanel.tres" id="2_gjxvf"]
 
 [sub_resource type="Gradient" id="Gradient_gjxvf"]
+resource_local_to_scene = true
 interpolation_mode = 2
 interpolation_color_space = 2
 colors = PackedColorArray(0, 0.203125, 1, 1, 0.6171875, 0.8833618, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+resource_local_to_scene = true
 gradient = SubResource("Gradient_gjxvf")
-fill = 1
+width = 192
+height = 16
 fill_from = Vector2(0, 0.2)
 fill_to = Vector2(1, 0.90000004)
 
@@ -26,23 +30,36 @@ region = Rect2(25, 2, 5, 5)
 atlas = ExtResource("1_heus3")
 region = Rect2(25, 9, 5, 5)
 
-[node name="Control" type="Control" unique_id=1583975386]
-layout_mode = 3
-anchors_preset = 15
+[sub_resource type="Gradient" id="Gradient_hvnfr"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0, 0, 0, 0.14117648, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gjxvf"]
+gradient = SubResource("Gradient_hvnfr")
+width = 16
+height = 16
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.26, 0.74)
+repeat = 2
+
+[node name="LevelDisplay" type="CanvasLayer" unique_id=1568176726]
+process_mode = 3
+script = ExtResource("1_fphuv")
+
+[node name="LevelWindow" type="Panel" parent="." unique_id=1007423089]
+anchors_preset = 11
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_left = -109.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 0
 grow_vertical = 2
 
-[node name="NinePatchRect" type="Panel" parent="." unique_id=1007423089]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=1719753861]
+[node name="VBox" type="VBoxContainer" parent="LevelWindow" unique_id=1719753861]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,14 +72,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 1
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer" unique_id=966278156]
+[node name="Gradient" type="TextureRect" parent="LevelWindow/VBox" unique_id=966278156]
+unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(0, 11)
 layout_mode = 2
 texture = SubResource("GradientTexture2D_g4v7s")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/TextureRect" unique_id=1223689392]
+[node name="TitleItems" type="HBoxContainer" parent="LevelWindow/VBox/Gradient" unique_id=1223689392]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,62 +94,102 @@ grow_vertical = 2
 theme_override_constants/separation = 1
 alignment = 2
 
-[node name="Button" type="Button" parent="NinePatchRect/VBoxContainer/TextureRect/HBoxContainer" unique_id=1109369624]
+[node name="Minimise" type="Button" parent="LevelWindow/VBox/Gradient/TitleItems" unique_id=1109369624]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 icon = SubResource("AtlasTexture_g4v7s")
 
-[node name="Button2" type="Button" parent="NinePatchRect/VBoxContainer/TextureRect/HBoxContainer" unique_id=1713886710]
+[node name="Fullscreen" type="Button" parent="LevelWindow/VBox/Gradient/TitleItems" unique_id=1713886710]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 icon = SubResource("AtlasTexture_fphuv")
 
-[node name="Button3" type="Button" parent="NinePatchRect/VBoxContainer/TextureRect/HBoxContainer" unique_id=727696288]
+[node name="Close" type="Button" parent="LevelWindow/VBox/Gradient/TitleItems" unique_id=727696288]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 icon = SubResource("AtlasTexture_mqtep")
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/TextureRect" unique_id=382993650]
+[node name="Title" type="Label" parent="LevelWindow/VBox/Gradient" unique_id=382993650]
+unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "  C://... .../Level"
+text = " levelName"
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="NinePatchRect/VBoxContainer" unique_id=2112450385]
+[node name="Panel" type="Panel" parent="LevelWindow/VBox" unique_id=383254782]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("2_gjxvf")
 
-[node name="ProgressBar" type="ProgressBar" parent="NinePatchRect/VBoxContainer/Panel" unique_id=1626511921]
+[node name="StripeTex" type="TextureRect" parent="LevelWindow/VBox/Panel" unique_id=299290001]
+visible = false
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 14.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-value = 50.0
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_gjxvf")
+stretch_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer" unique_id=1287794384]
+[node name="Info" type="Label" parent="LevelWindow/VBox/Panel" unique_id=588771522]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 102.0
+offset_bottom = 145.0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+text = "Completed
+Best Time: 69s
+Gold Time: 67s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Progress" type="ProgressBar" parent="LevelWindow/VBox" unique_id=1626511921]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+value = 100.0
+
+[node name="Buttons" type="HBoxContainer" parent="LevelWindow/VBox" unique_id=1287794384]
 layout_mode = 2
 theme_override_constants/separation = 1
 alignment = 2
 
-[node name="Button" type="Button" parent="NinePatchRect/VBoxContainer/HBoxContainer" unique_id=528040919]
+[node name="Open" type="Button" parent="LevelWindow/VBox/Buttons" unique_id=528040919]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0.25882354, 0.25882354, 0.25882354, 1)
 text = "Open"
 
-[node name="Button2" type="Button" parent="NinePatchRect/VBoxContainer/HBoxContainer" unique_id=1911992366]
+[node name="Challenge" type="Button" parent="LevelWindow/VBox/Buttons" unique_id=831734691]
+visible = false
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0.25882354, 0.25882354, 0.25882354, 1)
-text = "Close"
+text = "Challenge"
+
+[node name="Cancel" type="Button" parent="LevelWindow/VBox/Buttons" unique_id=1911992366]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.25882354, 0.25882354, 0.25882354, 1)
+text = "Cancel"
+
+[connection signal="pressed" from="LevelWindow/VBox/Gradient/TitleItems/Close" to="." method="close"]
+[connection signal="pressed" from="LevelWindow/VBox/Buttons/Open" to="." method="open"]
+[connection signal="pressed" from="LevelWindow/VBox/Buttons/Cancel" to="." method="close"]

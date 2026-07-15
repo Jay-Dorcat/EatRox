@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://caks1ul4vtp0e" path="res://Objects/LevelEntrance/Level.gd" id="1_s7vri"]
 [ext_resource type="Texture2D" uid="uid://dyep5s348mar3" path="res://Sparkle.png" id="2_i717y"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 2.0
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yf5fn"]
 particles_animation = true
 particles_anim_h_frames = 4
@@ -19,15 +22,19 @@ gravity = Vector3(0, 0, 0)
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
-[node name="Level" type="Node2D" unique_id=560511047]
+[node name="Level" type="Area2D" unique_id=1443132481]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
 script = ExtResource("1_s7vri")
-Type = 5
+
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=1956370291]
+shape = SubResource("CircleShape2D_g4v7s")
 
 [node name="Type" type="Sprite2D" parent="." unique_id=1185643469]
 texture = ExtResource("1_5n6w3")
 hframes = 16
 vframes = 2
-frame = 5
 
 [node name="State" type="Sprite2D" parent="." unique_id=1365174391]
 position = Vector2(4, 4)

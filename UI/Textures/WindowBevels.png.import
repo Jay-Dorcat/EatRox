@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lysj8k7s3ajv"
-path="res://.godot/imported/WindowBevels.png-339c02b1ea9e671b999bea3870d2bf09.ctex"
+path="res://.godot/imported/WindowBevels.png-9a4270311cec263bb57e8b3338d25ac8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/WindowBevels.png"
-dest_files=["res://.godot/imported/WindowBevels.png-339c02b1ea9e671b999bea3870d2bf09.ctex"]
+source_file="res://UI/Textures/WindowBevels.png"
+dest_files=["res://.godot/imported/WindowBevels.png-9a4270311cec263bb57e8b3338d25ac8.ctex"]
 
 [params]
 
