@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bmfcpe6mxig5i"]
+
+[ext_resource type="Script" uid="uid://dnme8fpdvk1cr" path="res://Entities/Laser/laser.gd" id="1_x1kqk"]
+[ext_resource type="Texture2D" uid="uid://2sg6jbgobcu8" path="res://Entities/Laser/laser_temp.png" id="2_b8h67"]
+
+[node name="Laser" type="Node2D" unique_id=491261895]
+script = ExtResource("1_x1kqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1623720631]
+texture = ExtResource("2_b8h67")
+
+[node name="LaserBeam" type="Line2D" parent="." unique_id=1069965146]
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1147116757]
+target_position = Vector2(0, 500)
