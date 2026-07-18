@@ -132,6 +132,7 @@ size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("2_gjxvf")
 
 [node name="StripeTex" type="TextureRect" parent="LevelWindow/VBox/Panel" unique_id=299290001]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
