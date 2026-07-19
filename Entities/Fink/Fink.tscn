@@ -70,6 +70,7 @@ animations = [{
 radius = 3.0
 
 [node name="Fink" type="RayCast2D" unique_id=1177035061]
+target_position = Vector2(0, 0)
 script = SubResource("GDScript_ol0bn")
 metadata/_custom_type_script = "uid://dqeiueyxwfvh8"
 
@@ -91,4 +92,5 @@ debug_color = Color(0.70196074, 0, 0, 0.41960785)
 [node name="PlayerSightline" type="RayCast2D" parent="." unique_id=349792671]
 enabled = false
 exclude_parent = false
+target_position = Vector2(0, 0)
 script = ExtResource("3_ol0bn")

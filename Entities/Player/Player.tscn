@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b68tsdgvk0mub"]
 
-[ext_resource type="Script" uid="uid://geeae87onx3m" path="res://Player.gd" id="1_kpjcp"]
-[ext_resource type="Texture2D" uid="uid://vq00ipvtojk5" path="res://Player.png" id="2_kne1u"]
+[ext_resource type="Script" uid="uid://geeae87onx3m" path="res://Entities/Player/Player.gd" id="1_kpjcp"]
+[ext_resource type="Texture2D" uid="uid://vq00ipvtojk5" path="res://Entities/Player/Player.png" id="2_kne1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
 radius = 3.0
@@ -12,6 +12,7 @@ radius = 2.0
 [node name="Player" type="RayCast2D" unique_id=546100122]
 enabled = false
 exclude_parent = false
+target_position = Vector2(0, 0)
 script = ExtResource("1_kpjcp")
 MaxSpeed = 86.0
 

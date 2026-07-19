@@ -26,6 +26,9 @@ var NextPosition : Vector2 = Vector2()
 
 func _ready() -> void:
 	NextPosition = position.snappedf(GRID_SIZE)
+	process_mode = PROCESS_MODE_DISABLED
+	await get_tree().process_frame
+	process_mode = PROCESS_MODE_INHERIT
 
 func _physics_process(delta: float) -> void:
 	var AvailableMovement : float = MovementSpeed * delta

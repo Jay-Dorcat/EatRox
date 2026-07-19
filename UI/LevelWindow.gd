@@ -20,7 +20,7 @@ func _ready() -> void:
 	%Info.text = InfoText
 
 func open():
-	pass
+	Transitioner.transition_to(Level.Scene)
 
 func close():
 	closed.emit()

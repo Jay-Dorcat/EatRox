@@ -43,6 +43,7 @@ func get_direction_priority() -> PackedByteArray:
 radius = 3.0
 
 [node name="Dink" type="RayCast2D" unique_id=1284927951]
+target_position = Vector2(0, 0)
 script = SubResource("GDScript_g4v7s")
 metadata/_custom_type_script = "uid://dqeiueyxwfvh8"
 
