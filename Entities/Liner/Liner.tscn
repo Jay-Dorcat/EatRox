@@ -73,6 +73,7 @@ animations = [{
 radius = 3.0
 
 [node name="Liner" type="RayCast2D" unique_id=2091674687]
+target_position = Vector2(0, 0)
 script = SubResource("GDScript_g4v7s")
 MovementSpeed = 48.0
 metadata/_custom_type_script = "uid://dqeiueyxwfvh8"

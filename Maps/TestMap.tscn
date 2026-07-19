@@ -11,22 +11,21 @@
 [ext_resource type="PackedScene" uid="uid://opctey0w1kib" path="res://Entities/Fink/Fink.tscn" id="10_43vq4"]
 [ext_resource type="PackedScene" uid="uid://c78kq7ulrqohk" path="res://Objects/LevelEntrance/Level.tscn" id="11_580ok"]
 [ext_resource type="PackedScene" uid="uid://cg5p0ahd4ykjf" path="res://Entities/Ghosts/BlueGhost.tscn" id="11_d4kuo"]
-[ext_resource type="PackedScene" uid="uid://bmfcpe6mxig5i" path="res://Entities/Laser/Laser.tscn" id="12_rorh5"]
 
-[sub_resource type="Gradient" id="Gradient_hvnfr"]
+[sub_resource type="Gradient" id="Gradient_580ok"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.5)
 colors = PackedColorArray(0, 0, 0, 0.14117648, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
-gradient = SubResource("Gradient_hvnfr")
+gradient = SubResource("Gradient_580ok")
 width = 16
 height = 16
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0.26, 0.74)
 repeat = 2
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_onbnv"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rorh5"]
 texture = ExtResource("1_g3g4i")
 texture_region_size = Vector2i(8, 8)
 use_texture_padding = false
@@ -391,15 +390,15 @@ physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Lined"
 terrain_set_0/terrain_0/color = Color(1, 0, 0, 1)
-sources/0 = SubResource("TileSetAtlasSource_onbnv")
+sources/0 = SubResource("TileSetAtlasSource_rorh5")
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lulwx"]
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_kg6lt"]
 resource_name = "Dot"
 scenes/1/scene = ExtResource("2_xxdj2")
 
 [sub_resource type="TileSet" id="TileSet_jgaxv"]
 tile_size = Vector2i(8, 8)
-sources/0 = SubResource("TileSetScenesCollectionSource_lulwx")
+sources/0 = SubResource("TileSetScenesCollectionSource_kg6lt")
 
 [node name="Map" type="Node2D" unique_id=915625579]
 
@@ -613,7 +612,11 @@ Type = 13
 
 [node name="Level16" parent="." unique_id=1159667808 instance=ExtResource("11_580ok")]
 position = Vector2(16, -208)
+LevelName = &"Test Map 2"
 Type = 15
+WindowGradient1 = Color(0.0078125, 1, 0, 1)
+WindowGradient2 = Color(0.6156863, 1, 0.78382355, 1)
+Scene = "uid://dqty2drmb540a"
 
 [node name="Portal15" parent="." unique_id=282448132 instance=ExtResource("8_1y0um")]
 modulate = Color(1, 0.49803922, 0.3137255, 1)
@@ -626,96 +629,3 @@ modulate = Color(1, 0.49803922, 0.3137255, 1)
 position = Vector2(136, -224)
 Colour = 3
 Shape = 1
-
-[node name="Laser" parent="." unique_id=491261895 instance=ExtResource("12_rorh5")]
-position = Vector2(264, -392)
-rotation = 0.8150688
-
-[node name="Laser2" parent="." unique_id=1621770439 instance=ExtResource("12_rorh5")]
-position = Vector2(88, -392)
-
-[node name="Laser3" parent="." unique_id=1299492124 instance=ExtResource("12_rorh5")]
-position = Vector2(376, -336)
-
-[connection signal="area_entered" from="DotRounds/Round1/Dot" to="DotRounds/Round1/Dot" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31398" to="DotRounds/Round1/@Area2D@31398" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31399" to="DotRounds/Round1/@Area2D@31399" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31400" to="DotRounds/Round1/@Area2D@31400" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31401" to="DotRounds/Round1/@Area2D@31401" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31402" to="DotRounds/Round1/@Area2D@31402" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31403" to="DotRounds/Round1/@Area2D@31403" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31404" to="DotRounds/Round1/@Area2D@31404" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31405" to="DotRounds/Round1/@Area2D@31405" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31406" to="DotRounds/Round1/@Area2D@31406" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31407" to="DotRounds/Round1/@Area2D@31407" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31408" to="DotRounds/Round1/@Area2D@31408" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31409" to="DotRounds/Round1/@Area2D@31409" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31410" to="DotRounds/Round1/@Area2D@31410" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31411" to="DotRounds/Round1/@Area2D@31411" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31412" to="DotRounds/Round1/@Area2D@31412" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31413" to="DotRounds/Round1/@Area2D@31413" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31414" to="DotRounds/Round1/@Area2D@31414" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round1/@Area2D@31415" to="DotRounds/Round1/@Area2D@31415" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/Dot" to="DotRounds/Round2/Dot" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31416" to="DotRounds/Round2/@Area2D@31416" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31417" to="DotRounds/Round2/@Area2D@31417" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31418" to="DotRounds/Round2/@Area2D@31418" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31419" to="DotRounds/Round2/@Area2D@31419" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31420" to="DotRounds/Round2/@Area2D@31420" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31421" to="DotRounds/Round2/@Area2D@31421" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31422" to="DotRounds/Round2/@Area2D@31422" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31423" to="DotRounds/Round2/@Area2D@31423" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31424" to="DotRounds/Round2/@Area2D@31424" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31425" to="DotRounds/Round2/@Area2D@31425" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31426" to="DotRounds/Round2/@Area2D@31426" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31427" to="DotRounds/Round2/@Area2D@31427" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31428" to="DotRounds/Round2/@Area2D@31428" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31429" to="DotRounds/Round2/@Area2D@31429" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31430" to="DotRounds/Round2/@Area2D@31430" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31431" to="DotRounds/Round2/@Area2D@31431" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31432" to="DotRounds/Round2/@Area2D@31432" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31433" to="DotRounds/Round2/@Area2D@31433" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31434" to="DotRounds/Round2/@Area2D@31434" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31435" to="DotRounds/Round2/@Area2D@31435" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31436" to="DotRounds/Round2/@Area2D@31436" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31437" to="DotRounds/Round2/@Area2D@31437" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31438" to="DotRounds/Round2/@Area2D@31438" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31439" to="DotRounds/Round2/@Area2D@31439" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31440" to="DotRounds/Round2/@Area2D@31440" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round2/@Area2D@31441" to="DotRounds/Round2/@Area2D@31441" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/Dot" to="DotRounds/Round3/Dot" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31442" to="DotRounds/Round3/@Area2D@31442" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31443" to="DotRounds/Round3/@Area2D@31443" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31444" to="DotRounds/Round3/@Area2D@31444" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31445" to="DotRounds/Round3/@Area2D@31445" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31446" to="DotRounds/Round3/@Area2D@31446" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31447" to="DotRounds/Round3/@Area2D@31447" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31448" to="DotRounds/Round3/@Area2D@31448" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31449" to="DotRounds/Round3/@Area2D@31449" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31450" to="DotRounds/Round3/@Area2D@31450" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31451" to="DotRounds/Round3/@Area2D@31451" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31452" to="DotRounds/Round3/@Area2D@31452" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31453" to="DotRounds/Round3/@Area2D@31453" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31454" to="DotRounds/Round3/@Area2D@31454" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31455" to="DotRounds/Round3/@Area2D@31455" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31456" to="DotRounds/Round3/@Area2D@31456" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31457" to="DotRounds/Round3/@Area2D@31457" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31458" to="DotRounds/Round3/@Area2D@31458" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31459" to="DotRounds/Round3/@Area2D@31459" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31460" to="DotRounds/Round3/@Area2D@31460" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31461" to="DotRounds/Round3/@Area2D@31461" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31462" to="DotRounds/Round3/@Area2D@31462" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31463" to="DotRounds/Round3/@Area2D@31463" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31464" to="DotRounds/Round3/@Area2D@31464" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31465" to="DotRounds/Round3/@Area2D@31465" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31466" to="DotRounds/Round3/@Area2D@31466" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31467" to="DotRounds/Round3/@Area2D@31467" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31468" to="DotRounds/Round3/@Area2D@31468" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31469" to="DotRounds/Round3/@Area2D@31469" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31470" to="DotRounds/Round3/@Area2D@31470" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31471" to="DotRounds/Round3/@Area2D@31471" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31472" to="DotRounds/Round3/@Area2D@31472" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31473" to="DotRounds/Round3/@Area2D@31473" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31474" to="DotRounds/Round3/@Area2D@31474" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31475" to="DotRounds/Round3/@Area2D@31475" method="collected" unbinds=1]
-[connection signal="area_entered" from="DotRounds/Round3/@Area2D@31476" to="DotRounds/Round3/@Area2D@31476" method="collected" unbinds=1]

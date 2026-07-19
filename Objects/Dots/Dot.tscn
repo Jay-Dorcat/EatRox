@@ -9,6 +9,7 @@ script/source = "extends Area2D
 
 func _ready() -> void:
 	$Sprite.Wave = position.x * 0.1
+	area_entered.connect(collected.unbind(1))
 
 func collected() -> void:
 	queue_free()
@@ -79,5 +80,3 @@ script = ExtResource("2_nigj7")
 [node name="Shape" type="CollisionShape2D" parent="." unique_id=881639980]
 shape = SubResource("CircleShape2D_g4v7s")
 debug_color = Color(0.70196074, 0.44420955, 0, 0.41960785)
-
-[connection signal="area_entered" from="." to="." method="collected" unbinds=1]
